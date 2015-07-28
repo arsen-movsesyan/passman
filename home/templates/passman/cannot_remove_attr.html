@@ -1,0 +1,15 @@
+{% extends "passman/acct_base.html" %}
+
+
+{% block main_info %}
+
+Cannot remove {{ object }} {{ attr }}<br>
+These accounts still use it<br>
+<table border="1">
+{% for acct in accts %}
+    <tr>
+	<td><a href="/acct/{{ acct.id }}">{{ acct.acct_name }}</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

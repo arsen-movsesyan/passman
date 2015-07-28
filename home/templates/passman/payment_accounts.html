@@ -1,0 +1,54 @@
+{% extends "passman/acct_base.html" %}
+
+{% block search %}
+{% include "passman/acct_search_form.html" %}
+{% endblock %}
+
+{% block main_info %}
+List payment accounts<br>
+
+<table border="1">
+    <tr>
+	<td class="small_header">Account Name</td>
+	<td class="small_header">URL</td>
+	<td class="small_header">Due date</td>
+	<td class="small_header">Days Left</td>
+	<td class="small_header">Acknowledge</td>
+	<td class="small_header">History</td>
+    </tr>
+{% for account in accts %}
+    <tr>
+	<td><a class="noticable" href="/acct/{{ account.obj.id }}">{{ account.obj.acct_name }}</a></td>
+	<td>
+{% if account.show_payment %}
+
+	    <a target="_blank" href="{{ account.obj.url }}">{{ account.obj.url }}</a>
+{% else %}
+    {{ account.obj.url }}
+{% endif %}
+	    </td>
+	<td class="wide">{{ account.due_date }}</td>
+{% if account.auto_payment %}
+	<td align="center" bgcolor="#ffffff">{{ account.days_left }}</td>
+{% else %}
+
+	<td align="center" bgcolor="{{ account.color }}">{{ account.days_left }}</td>
+{% endif %}
+	<td class="wide">
+{% if account.auto_payment %}
+    Auto Payment
+{% else %}
+    {% if account.show_payment %}
+	    <a href="acknowledge/{{ account.obj.id }}">Input payment</a>
+    {% else %}
+	No payment needed
+    {% endif %}
+{% endif %}
+	    </td>
+	<td><a href="payment_history/{{ account.obj.id }}">List Payments</a></td>
+    </tr>
+{% endfor %}
+</table>
+<br>
+{% endblock %}
+

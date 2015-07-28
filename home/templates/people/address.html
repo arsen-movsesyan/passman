@@ -1,0 +1,37 @@
+{% extends "home/base.html" %}
+
+{% block main_info %}
+<table border="1">
+    <tr>
+	<td class="small_header">Start</td>
+	<td class="small_header">End</td>
+	<td class="small_header">Address</td>
+<!--
+	<td class="small_header">City</td>
+	<td class="small_header">State</td>
+	<td class="small_header">Zip Code</td>
+-->
+	<td class="small_header">Comments</td>
+    </tr>
+
+
+
+{% for addr in addrs %}
+    <tr>
+	<td>{{ addr.start_date }}</td>
+	<td>{% if addr.end_date == None %}
+		Present
+	{% else %}
+		{{ addr.end_date }}
+	{% endif %}</td>
+	<td>{{ addr.str_address }} {{ addr.city }}, {{ addr.state }} {{ addr.zip_code }}</td>
+	<td>{% if addr.comments == None %}
+		&nbsp;
+	    {% else %}
+		{{ addr.comments }}
+	    {% endif %}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
+

@@ -1,0 +1,26 @@
+{% extends "home/base.html" %}
+
+{% block main_info %}
+<table border="1">
+    <tr>
+	<td class="small_header">First Name</td>
+	<td class="small_header">Last Name</td>
+	<td class="small_header">DOB</td>
+	<td class="small_header">SSN</td>
+    </tr>
+
+
+
+{% for person in ssn %}
+    <tr>
+	<td>{{ person.f_name }}</td>
+	<td>{{ person.l_name }}</td>
+	<td>{{ person.dob }}</td>
+	<td class="shaded">{{ person.ssn_13 }}-{{ person.ssn_45 }}-{{ person.ssn_69 }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}
+
+

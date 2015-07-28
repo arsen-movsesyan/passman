@@ -1,0 +1,30 @@
+{% extends "passman/acct_base.html" %}
+
+{% block search %}
+{% include "passman/acct_search_form.html" %}
+{% endblock %}
+
+{% block main_info %}
+
+
+<table border="1">
+    <tr>
+	<td class="small_header">Account Name</td>
+	<td class="small_header">Category</td>
+	<td class="small_header">URL</td>
+	<td class="small_header">Active</td>
+	<td class="small_header">Created</td>
+    </tr>
+{% for account in accts %}
+    <tr>
+	<td><a class="noticable" href="/acct/{{ account.id }}">{{ account.acct_name }}</a></td>
+	<td>{{ account.category }}</td>
+	<td><a target="_blank" href="{{ account.url }}">{{ account.url }}</a></td>
+	<td>{{ account.active }}</td>
+	<td>{{ account.created_at }}</td>
+    </tr>
+{% endfor %}
+</table>
+<br>
+{% endblock %}
+

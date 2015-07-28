@@ -1,0 +1,26 @@
+{% extends "passman/acct_base.html" %}
+
+{% block search %}
+{# {% include "passman/acct_search_form.html" %} #}
+{% endblock %}
+
+{% block main_info %}
+Payment history for <b>{{ account }}</b><br><br>
+
+<table border="1">
+    <tr>
+	<td class="small_header">Date</td>
+	<td class="small_header">Amount</td>
+	<td class="small_header">Confirmation Code</td>
+    </tr>
+{% for hist in p_h %}
+    <tr>
+	<td class="wide">{{ hist.payment_date }}</td>
+	<td class="wide">{{ hist.payment_amount }}</td>
+	<td align="right">{{ hist.confirmation_code }}</td>
+    </tr>
+{% endfor %}
+</table>
+<br>
+{% endblock %}
+

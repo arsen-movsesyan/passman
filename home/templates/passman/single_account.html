@@ -1,0 +1,70 @@
+{% extends "passman/acct_base.html" %}
+
+{% block search %}
+{% endblock %}
+
+
+{% block main_info %}
+<br>
+
+<table border="1">
+    <tr>
+	<td>
+
+<table border="1">
+    <tr>
+	<td class="small_header">Account Name</td>
+	<td>{{ account.acct_name }}</td>
+    </tr><tr>
+	<td class="small_header">Login</td>
+	<td>{{ account.login }}</td>
+    </tr><tr>
+	<td class="small_header">Active</td>
+	<td>{{ account.active }}</td>
+    </tr><tr>
+	<td class="small_header">Category</td>
+	<td>{{ account.category }}</td>
+    </tr><tr>
+	<td class="small_header">URL</td>
+	<td><a target="_blank" href="{{ account.url }}">{{ account.url }}</a></td>
+    </tr><tr>
+	<td class="small_header">Shaded</td>
+	<td class="shaded">{{ account.passwd }}</td>
+    </tr><tr>
+	<td class="small_header">Description</td>
+	<td>{{ account.description }}</td>
+    </tr>
+
+
+
+
+</table>
+
+	</td><td>
+
+<table border="1">
+    <tr>
+	<td class="small_header">Attribute</td>
+	<td class="small_header">Value</td>
+    </tr>
+{% for aa in aas %}
+    <tr>
+	<td class="wide">{{ aa.attr }}</td>
+	<td class="wide">{{ aa.acct_value }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+	</td>
+    </tr>
+{% include "home/hidden_divider.html" %}
+
+    <tr align="center">
+	<td><a class="edit_item" href="/acct/edit_account/{{ account.id }}">Edit Account</a></td>
+	<td><a class="edit_item" href="/acct/acct_attributes/{{ account.id }}">Add remove Attributes</a></td>
+    </tr>
+</table>
+
+<br>
+
+{% endblock %}

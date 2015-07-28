@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+uwsgi --chdir=/home/arsen/work/passman \
+    --master --pidfile=/tmp/passman-master.pid \
+    --module=auth_site.wsgi:application \
+    --env DJANGO_SETTINGS_MODULE=auth_site.settings \
+    --http=0.0.0.0:8000 \
+    --processes=5 \
+    --harakiri=20 \
+    --vacuum \
+    --daemonize=/home/arsen/work/passman/site.log
+#    --uid=1000 --gid=2000 \         # if root, uwsgi can drop privileges
+#    --max-requests=5000 \           # respawn processes after serving 5000 requests
+#    --home=/path/to/virtual/env \   # optional path to a virtualenv
+#    --module=mysite.wsgi:application \
+#    --env DJANGO_SETTINGS_MODULE=mysite.settings \

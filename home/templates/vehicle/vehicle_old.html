@@ -1,0 +1,31 @@
+
+{% extends "home/base.html" %}
+
+{% block main_info %}
+<table border="1">
+    <tr>
+	<td class="small_header">Car</td>
+	<td class="small_header">License Plate</td>
+	<td class="small_header">Year</td>
+	<td class="small_header">VIN</td>
+	<td class="small_header">Purchased</td>
+	<td class="small_header">Non Operational</td>
+    </tr>
+
+
+
+{% for car in cars %}
+    <tr>
+	<td>{{ car.v_make }} {{ car.v_model }}</td>
+	<td>{{ car.license_plate }}</td>
+	<td>{{ car.v_year }}</td>
+	<td>{{ car.vin }}</td>
+	<td>{{ car.purchase_date }}</td>
+	<td>{{ car.nonoperational_date }}</td>
+    </tr>
+{% endfor %}
+</table>
+<br>
+{% include "vehicle/vehicle_registration.html" %}
+{% endblock %}
+
